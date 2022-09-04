@@ -13,8 +13,7 @@
   <body>
 
     <header>
-      <div class="container">
-        <img src="rachel.jpg" width="300" height="300" alt="200"> 
+      <div id="rachel-photo" class="container">
       </div>
     </header>
 
@@ -32,6 +31,29 @@
       <div id="verse-content" class="verse-container"></div>
     </main>
 
+    <script>
+        const rachelRef = document.querySelector('#rachel-photo');
+
+        const RACHELS = [
+            'rachel.jpg',
+            'rachel2.jpg',
+            'rachel3.jpg',
+            'rachel4.jpg'
+        ];
+
+        const randomRachel = Math.floor(Math.random() * RACHELS.length);
+        const rachelID = RACHELS[randomRachel];
+
+        
+        var img = document.createElement('img');
+        img.src = rachelID;
+        img.setAttribute('width', '200');
+        img.setAttribute('height', '200');
+        img.alt = 'Rachel being loaded';
+        rachelRef.appendChild(img);
+        
+    </script>
+
     <script src="my_key.js"></script>
     <script type="text/javascript" src="https://pkg.api.bible/fumsV3.min.js"></script>
     <script>
@@ -41,6 +63,7 @@
         window.fumsData.push(arguments);
       };
     </script>
+
     <script>
       const verse = document.querySelector(`#verse-content`);
       const verseRef = document.querySelector(`#verse`);
