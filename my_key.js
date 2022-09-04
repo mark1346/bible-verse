@@ -1,0 +1,1 @@
+const API_KEY = `212236130e3132d418bfa94ff8adb5fc`; // Fill this in with your own API key from https://portal.api.bible/
