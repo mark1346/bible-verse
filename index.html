@@ -60,22 +60,11 @@
         
     </script>
 
-    <script src="my_key.js"></script>
-    <script type="text/javascript" src="https://pkg.api.bible/fumsV3.min.js"></script>
-    <script>
-      /* This code ensures that FUMS will be reported correctly even if fumsV3.min.js has not finished loading before an attempt is made. */
-      window.fumsData = window.fumsData || [];
-      window.fums = window.fums || function () {
-        window.fumsData.push(arguments);
-      };
-    </script>
-
     <script>
       const verse = document.querySelector(`#verse-content`);
       const verseRef = document.querySelector(`#verse`);
       const krverse = document.querySelector('#kr-verse-content');
 
-      const BIBLE_ID = `de4e12af7f28f599-01`;
       const VERSES = [ 
         '1THES/5:16-18',
         'ISA/41:10',
@@ -111,8 +100,7 @@
       const randomIndex = Math.floor(Math.random() * VERSES.length);
       const verseID = VERSES[randomIndex];
       
-      getResults(verseID).then((data) => {
-        console.log(data);
+     
         //const passage = data.passages[0];
         verseRef.innerHTML = `<span><i>${verseID}</i></span>`;
         //verse.innerHTML = `<div class="text eb-container">${passage.content}</div>`;
@@ -127,35 +115,6 @@
         krverse.appendChild(krv);
         //krverse.innerHTML = '<object type="text/html" data="" width="800" height="160"> </object>';
         //krverse.setAttribute("data", address);
-        
-      });
-
-      /**
-       * Gets verse(s) that matches verseID from API.Bible
-       * @returns {Promise} containing verse
-       */
-      function getResults(verseID) {
-        return new Promise((resolve, reject) => {
-          const xhr = new XMLHttpRequest();
-          xhr.withCredentials = false;
-
-          xhr.addEventListener(`readystatechange`, function() {
-            if (this.readyState === this.DONE) {
-              const {data, meta} = JSON.parse(this.responseText);
-
-              fums(`trackview`,meta.fumsToken);
-              resolve(data);
-            }
-          });
-
-          xhr.open(`GET`, `https://api.scripture.api.bible/v1/bibles/${BIBLE_ID}/search?query=${verseID}`);
-          xhr.setRequestHeader(`api-key`, API_KEY);
-          //xhr.open('GET', 'https://yesu.io/bible?lang=kor&doc=ge&start=1:1&end=2:5');
-          xhr.onerror = () => reject(xhr.statusText);
-
-          xhr.send();
-        });
-      }
     </script>
   </body>
 </html>
