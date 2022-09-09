@@ -28,7 +28,6 @@
     </div>
 
     <main class="container">
-      <div id="verse-content" class="verse-container"></div>
       <div id="kr-verse-content" class="verse-container"></div>
     </main>
 
@@ -61,7 +60,6 @@
     </script>
 
     <script>
-      const verse = document.querySelector(`#verse-content`);
       const verseRef = document.querySelector(`#verse`);
       const krverse = document.querySelector('#kr-verse-content');
 
@@ -101,9 +99,7 @@
       const verseID = VERSES[randomIndex];
       
      
-        //const passage = data.passages[0];
         verseRef.innerHTML = `<span><i>${verseID}</i></span>`;
-        //verse.innerHTML = `<div class="text eb-container">${passage.content}</div>`;
         const exam = verseID;
         const address = "http://ibibles.net/quote.php?kor-" + exam;
 
