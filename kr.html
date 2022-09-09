@@ -29,7 +29,6 @@
 
     <main class="container">
       <div id="verse-content" class="verse-container"></div>
-      <div id="kr-verse-content" class="verse-container"></div>
     </main>
 
     <script>
@@ -73,61 +72,35 @@
     <script>
       const verse = document.querySelector(`#verse-content`);
       const verseRef = document.querySelector(`#verse`);
-      const krverse = document.querySelector('#kr-verse-content');
 
       const BIBLE_ID = `de4e12af7f28f599-01`;
       const VERSES = [ 
-        '1THES/5:16-18',
-        'ISA/41:10',
-        '2COR/9:8',
-        'ISA/43:1',
-        '1COR/10:13',
-        'HEB/12:2',
-        'JOHN/3:16-17',
-        `ISA/40:31`,
-        'MAT/11:28-30',
-        'JER/29:11',
-        'PRO/3:5-6',
-        'PSA/27:1',
-        'JOHN/14:6',
-        'JOS/1:9',
-        'HEB/13:8', 
-        'JOHN/13:1', 
-        '3JOHN/1:2',
-        'LUKE/16:10',
-        'JAMES/5:13',
-        'PROVERBS/16:3',
-        'DEUT/31:8',
-        'JOHN/17:3',
-        '2COR/4:18',
-        'PSA/56:11',
-        '1COR/15:19',
-        'ROM/12:16',
-        '2COR/12:9',
-        'PSA/62:5',
-        'DUET/6:5'
+        '1THES.5.16-18',
+        'ISA.41.10',
+        '2COR.9.8',
+        'ISA.43.1',
+        '1COR.10.13',
+        'HEB.12.2',
+        'JHN.3.16-17',
+        `ISA.40.31`,
+        'MAT.11.28-30',
+        'JER.29.11',
+        'PRO.3.5-6',
+        'PSA.27.1',
+        'JHN.14.6',
+        'JOS.1.9',
+        'HEB.13.8',
+        'JHN.13.1'
       ];
 
       const randomIndex = Math.floor(Math.random() * VERSES.length);
       const verseID = VERSES[randomIndex];
-      
+
       getResults(verseID).then((data) => {
         console.log(data);
-        //const passage = data.passages[0];
-        verseRef.innerHTML = `<span><i>${verseID}</i></span>`;
-        //verse.innerHTML = `<div class="text eb-container">${passage.content}</div>`;
-        const exam = verseID;
-        const address = "http://ibibles.net/quote.php?kor-" + exam;
-
-        var krv = document.createElement('object');
-        krv.setAttribute('type', "text/html");
-        krv.setAttribute('data', address);
-        krv.setAttribute('width', "800");
-        krv.setAttribute('height', "100");
-        krverse.appendChild(krv);
-        //krverse.innerHTML = '<object type="text/html" data="" width="800" height="160"> </object>';
-        //krverse.setAttribute("data", address);
-        
+        const passage = data.passages[0];
+        verseRef.innerHTML = `<span><i>${passage.reference}</i></span>`;
+        verse.innerHTML = `<div class="text eb-container">${passage.content}</div>`;
       });
 
       /**
