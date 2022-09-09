@@ -102,6 +102,7 @@
         verseRef.innerHTML = `<span><i>${verseID}</i></span>`;
         const exam = verseID;
         const address = "http://ibibles.net/quote.php?kor-" + exam;
+        
 
         var krv = document.createElement('object');
         krv.setAttribute('type', "text/html");
@@ -109,6 +110,7 @@
         krv.setAttribute('width', "800");
         krv.setAttribute('height', "100");
         krverse.appendChild(krv);
+        console.log(address);
         //krverse.innerHTML = '<object type="text/html" data="" width="800" height="160"> </object>';
         //krverse.setAttribute("data", address);
     </script>
